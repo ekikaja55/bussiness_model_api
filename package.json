@@ -18,7 +18,11 @@
   "homepage": "https://github.com/ekikaja55/bussiness_model_api#readme",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "joi": "^17.13.3",
     "mysql": "^2.18.1",
     "sequelize": "^6.37.7"
   }
