@@ -1,54 +1,45 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class userModel extends Model {
+  class noteModel extends Model {
     static associate(models) {
-      userModel.hasMany(models.Note, {
+      noteModel.belongsTo(models.User, {
         foreignKey: "user_id",
       });
     }
   }
-  userModel.init(
+  noteModel.init(
     {
-      user_id: {
+      note_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
-      username: {
-        type: DataTypes.STRING,
-        unique: true,
+      user_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      date_of_birth: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      api_key: {
+      note_desc: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      balance: {
+      note_length: {
         type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
-      api_hit: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+        allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "userModel",
-      tableName: "user",
+      modelName: "noteModel",
+      tableName: "note_user",
       name: {
-        plural: "users",
-        singular: "users",
+        plural: "notes",
+        singular: "notes",
       },
       paranoid: true,
       timestamps: true,
     }
   );
-  return userModel;
+  return noteModel;
 };
